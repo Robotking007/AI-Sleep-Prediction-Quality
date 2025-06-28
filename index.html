@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sleep Quality Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-moon"></i>
+                <span>SleepAI</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Analysis</a></li>
+                    <li><a href="#">Tips</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>AI-Powered Sleep Quality Prediction</h1>
+                    <p>Discover how your daily activities affect your sleep quality with our advanced machine learning model.</p>
+                    <button id="learn-more">Learn More <i class="fas fa-arrow-right"></i></button>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Sleeping person">
+                </div>
+            </section>
+
+            <section class="prediction-form">
+                <h2>Predict Your Sleep Quality</h2>
+                <p>Enter your fitness data from today to get a sleep quality prediction.</p>
+                
+                <form id="sleepForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="heartRate">Average Heart Rate (bpm)</label>
+                            <input type="number" id="heartRate" name="heartRate" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="steps">Steps Count</label>
+                            <input type="number" id="steps" name="steps" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="activeMinutes">Active Minutes</label>
+                            <input type="number" id="activeMinutes" name="activeMinutes" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="calories">Calories Burned</label>
+                            <input type="number" id="calories" name="calories" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="stressLevel">Stress Level (1-10)</label>
+                            <input type="number" id="stressLevel" name="stressLevel" min="1" max="10" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="timeInBed">Time in Bed (minutes)</label>
+                            <input type="number" id="timeInBed" name="timeInBed" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="sleepInterruptions">Sleep Interruptions</label>
+                            <input type="number" id="sleepInterruptions" name="sleepInterruptions" required>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="predict-button">
+                        <i class="fas fa-moon"></i> Predict Sleep Quality
+                    </button>
+                </form>
+            </section>
+
+            <section class="results" id="resultsSection" style="display: none;">
+                <div class="result-card">
+                    <div class="result-header">
+                        <h3>Your Sleep Quality Prediction</h3>
+                        <div class="quality-score">
+                            <span id="qualityScore">0</span>/100
+                        </div>
+                    </div>
+                    
+                    <div class="result-body">
+                        <div class="gauge-container">
+                            <div id="gaugeChart"></div>
+                        </div>
+                        
+                        <div class="sleep-stages">
+                            <h4>Predicted Sleep Stages</h4>
+                            <div id="sleepStagesChart"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendations">
+                        <h4>Personalized Recommendations</h4>
+                        <ul id="recommendationsList">
+                            <!-- Filled by JavaScript -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="trends">
+                <h2>Sleep Trends Analysis</h2>
+                <p>Visualize how different factors correlate with your sleep quality.</p>
+                
+                <div class="chart-container">
+                    <canvas id="correlationChart"></canvas>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <h3>About SleepAI</h3>
+                    <p>Using advanced machine learning to help you understand and improve your sleep quality based on your daily activities.</p>
+                </div>
+                
+                <div class="footer-section links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Research</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> info@sleepai.com</p>
+                    <div class="socials">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                &copy; 2023 SleepAI | Designed with <i class="fas fa-heart"></i> for better sleep
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

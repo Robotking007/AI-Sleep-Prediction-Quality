@@ -1,0 +1,68 @@
+<!-- templates/tips.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sleep Optimization Tips</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        {% include 'header.html' %}
+
+        <main>
+            <section class="tips-section">
+                <h1><i class="fas fa-lightbulb"></i> Science-Backed Sleep Tips</h1>
+                
+                <div class="tip-cards">
+                    <div class="tip-card">
+                        <div class="tip-icon" style="background-color: #6c5ce7;">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <h3>Sleep Environment</h3>
+                        <ul>
+                            <li>Keep room temperature between 60-67°F (15-19°C)</li>
+                            <li>Use blackout curtains to block light</li>
+                            <li>Consider white noise machines</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-card">
+                        <div class="tip-icon" style="background-color: #00b894;">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3>Activity & Timing</h3>
+                        <ul>
+                            <li>Morning exercise improves deep sleep by 75%</li>
+                            <li>Finish workouts 3+ hours before bedtime</li>
+                            <li>15-min evening yoga reduces sleep latency</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-card">
+                        <div class="tip-icon" style="background-color: #fd79a8;">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3>Nutrition</h3>
+                        <ul>
+                            <li>Tart cherry juice increases melatonin</li>
+                            <li>Magnesium-rich foods reduce insomnia</li>
+                            <li>Avoid heavy meals 3hrs before bed</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="research-section">
+                    <h2><i class="fas fa-book"></i> Research Citations</h2>
+                    <div class="research-item">
+                        <p>"Evening exercise does not disrupt sleep quality"</p>
+                        <span>Journal of Sleep Research, 2022</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        {% include 'footer.html' %}
+    </div>
+</body>
+</html>
