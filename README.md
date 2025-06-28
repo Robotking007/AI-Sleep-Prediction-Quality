@@ -24,5 +24,5 @@ An AI-powered web application that predicts sleep quality based on fitness track
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/sleep-quality-prediction.git
+git clone https://github.com/Robotking007/AI-Sleep-Prediction-Quality.git
 cd sleep-quality-prediction
